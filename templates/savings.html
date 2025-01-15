@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Savings
+{% endblock %}
+
+{% block main %}
+    <h1>Invest in Savings</h1>
+
+<!-- Display success or error messages -->
+    {% if success %}
+        <div class="alert alert-success">{{ success }}</div>
+    {% endif %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <p>Enter the amount you want to invest. Your savings will grow at a rate of 4.5% annually.</p>
+    <p>You have only {{ budget.remaining_budget | usd }} remaining to invest.</p>
+    <form action="/savings" method="post">
+        <div class="mb-3">
+            <label for="amount" class="form-label">Investment Amount</label>
+            <input type="number" class="form-control" id="amount" name="amount" step="0.01" placeholder="0.00" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Invest</button>
+    </form>
+
+<!-- Display current savings data if available -->
+    {% if savings_data %}
+        <h3 class="mt-4">Your Savings</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Original Investment</th>
+                    <th>Current Value of Investment</th>
+                    <th>Annual Rate</th>
+                    <th>Invested On</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for savings in savings_data %}
+                    <tr>
+                        <td>${{ savings.original }}</td>
+                        <td>${{ savings.updated }}</td>
+                        <td>{{ savings.rate }}%</td>
+                        <td>{{ savings.created_at }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+<!-- Optional JavaScript for client-side validation -->
+    <script>
+        document.getElementById("amount").addEventListener("input", function() {
+            const remainingBudget = {
+                {
+                    budget.remaining_budget
+                }
+            });
+            const amount = parseFloat(this.value);
+            if (amount > remainingBudget) {
+                alert("Investment exceeds your remaining budget!");
+                this.value = remainingBudget;
+            }
+        });
+    </script>
+{% endblock %}

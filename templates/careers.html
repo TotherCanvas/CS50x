@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Careers
+{% endblock %}
+
+{% block main %}
+    <section class="careers">
+        <h1>Careers at FinScope</h1>
+        <p>At <strong>FinScope</strong>, we are always looking for passionate individuals to join our team.</p>
+        <p>If you are driven by the desire to make a difference in personal finance, we would love to hear from you!</p>
+        <h2>Why Work With Us?</h2>
+        <div class="d-flex justify-content-center">
+            <ul class="list-unstyled text-start">
+                <li class="mb-3 d-flex align-items-start">
+                    <i class="bi bi-heart-fill text-danger me-3"></i>
+                    <div>
+                        <strong>Health Insurance:</strong> We offer several plan options to meet your needs and budget, including an HSA match.
+                    </div>
+                </li>
+                <li class="mb-3 d-flex align-items-start">
+                    <i class="bi bi-piggy-bank-fill text-primary me-3"></i>
+                    <div>
+                        <strong>401(k):</strong> We match up to 4% with a Roth option.
+                    </div>
+                </li>
+                <li class="mb-3 d-flex align-items-start">
+                    <i class="bi bi-emoji-smile-fill text-warning me-3"></i>
+                    <div>
+                        <strong>Counseling Reimbursement:</strong> Life happens, and we want to help with counseling services.
+                    </div>
+                </li>
+                <li class="mb-3 d-flex align-items-start">
+                    <i class="bi bi-cup-hot-fill text-secondary me-3"></i>
+                    <div>
+                        <strong>On-site Cafeteria and Coffee Shop:</strong> Enjoy top-notch food with subsidized pricing or bring your leftovers!
+                    </div>
+                </li>
+                <li class="mb-3 d-flex align-items-start">
+                    <i class="bi bi-person-bounding-box text-dark me-3"></i>
+                    <div>
+                        <strong>Casual Dress:</strong> No pantsuits here—be comfortable at work!
+                    </div>
+                </li>
+                <li class="mb-3 d-flex align-items-start">
+                    <i class="bi bi-heart-pulse-fill text-danger me-3"></i>
+                    <div>
+                        <strong>Wellness Benefits:</strong> Reimbursement for gym memberships or online workout subscriptions to support your physical health.
+                    </div>
+                </li>
+                <li class="mb-3 d-flex align-items-start">
+                    <i class="bi bi-people-fill text-info me-3"></i>
+                    <div>
+                        <strong>Team Activities and Events:</strong> Attend weekly devotionals, professional development courses, Battle of the Bands, and our out-of-this-world Christmas party.
+                    </div>
+                </li>
+                <li class="d-flex align-items-start">
+                    <i class="bi bi-clock-history text-primary me-3"></i>
+                    <div>
+                        <strong>Work-Life Balance:</strong> Enjoy generous PTO, 40-hour workweeks, and flexible hours.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <h2>Contact Us</h2>
+        <p>If you're interested in joining our team, please reach out to us using the form below:</p>
+
+
+        <form action="/careers" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Your Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+        </form>
+    </section>
+{% endblock %}

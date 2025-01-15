@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign In
+{% endblock %}
+
+{% block main %}
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Sign In</h2>
+        <form action="/signin" method="post" class="p-4 border rounded shadow-lg bg-light mx-auto" style="max-width: 400px;">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Enter your username" type="text">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input class="form-control" id="password" name="password" placeholder="Enter your password" type="password">
+            </div>
+            <button class="btn btn-primary w-100" type="submit">Sign In</button>
+        </form>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stocks
+{% endblock %}
+
+{% block main %}
+    <h1>Invest in the US Stock Market</h1>
+    <h5>Invest and grow your savings at a rate of more than 10%* annually!</h5>
+    <small>*Based on average returns on the S&P500 from 1928-2024</small>
+    <p></p>
+    <p>You have only {{ budget.remaining_budget | usd }} remaining to invest.</p>
+    <form action="/stocks" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="symbol" placeholder="Symbol" value="{{ request.args.get('symbol', '') }}" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" min="1" name="shares" placeholder="Shares" type="number" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Buy</button>
+    </form>
+    <p></p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Symbol</th>
+                <th class="text-end">Shares</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">Total</th>
+                <th class="text-end"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td class="text-start">{{ stock.symbol | upper }}</td> <!-- Convert to uppercase -->
+                    <td class="text-end">{{ stock.shares }}</td>
+                    <td class="text-end">{{ stock.price | usd }}</td>
+                    <td class="text-end">{{ stock.total | usd }}</td>
+                    <td>
+                <!-- Sell Button -->
+                        <form action="/sell" method="get" style="display:inline;">
+                            <input type="hidden" name="symbol" value="{{ stock.symbol }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Sell</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="3">Total Stock Value</td>
+                <td class="border-0 w-bold text-end">{{ totalStocksValue | usd }}</td>
+                <td class="border-0 w-bold text-end"></td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

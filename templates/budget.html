@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Budget
+{% endblock %}
+
+{% block main %}
+    <h1>Enter Your Monthly Budget</h1>
+
+    <form action="/budget" method="post" class="budget-form">
+        <h3>Income</h3>
+        <div class="mb-3">
+            <label for="paycheck1" class="form-label">Paycheck 1 ($)</label>
+            <input type="number" class="form-control" id="paycheck1" name="paycheck1" value="{{ budget.paycheck1 or 0 }}" step="0.01" placeholder="Enter first paycheck" required>
+        </div>
+        <div class="mb-3">
+            <label for="paycheck2" class="form-label">Paycheck 2 ($)</label>
+            <input type="number" class="form-control" id="paycheck2" name="paycheck2" value="{{ budget.paycheck2 or 0 }}" step="0.01" placeholder="Enter second paycheck" required>
+        </div>
+
+        <h3>Expenses</h3>
+
+        <div class="mb-3">
+            <label for="charity" class="form-label">Charity ($)</label>
+            <input type="number" class="form-control expense-input" id="charity" name="charity" value="{{ budget.charity or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="emerFund" class="form-label">Emergency Fund ($)</label>
+            <input type="number" class="form-control expense-input" id="emerFund" name="emerFund" value="{{ budget.emerFund or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="rent" class="form-label">Rent ($)</label>
+            <input type="number" class="form-control expense-input" id="rent" name="rent" value="{{ budget.rent or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+        <div class="mb-3">
+            <label for="water" class="form-label">Water ($)</label>
+            <input type="number" class="form-control expense-input" id="water" name="water" value="{{ budget.water or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="natgas" class="form-label">Natural Gas ($)</label>
+            <input type="number" class="form-control expense-input" id="natgas" name="natgas" value="{{ budget.natgas or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="electric" class="form-label">Electricity ($)</label>
+            <input type="number" class="form-control expense-input" id="electric" name="electric" value="{{ budget.electric or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="cable" class="form-label">Cable ($)</label>
+            <input type="number" class="form-control expense-input" id="cable" name="cable" value="{{ budget.cable or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="gasoline" class="form-label">Gasoline ($)</label>
+            <input type="number" class="form-control expense-input" id="gasoline" name="gasoline" value="{{ budget.gasoline or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="grocery" class="form-label">Grocery ($)</label>
+            <input type="number" class="form-control expense-input" id="grocery" name="grocery" value="{{ budget.grocery or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="cloth" class="form-label">Clothing ($)</label>
+            <input type="number" class="form-control expense-input" id="cloth" name="cloth" value="{{ budget.cloth or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="entertain" class="form-label">Entertainment ($)</label>
+            <input type="number" class="form-control expense-input" id="entertain" name="entertain" value="{{ budget.entertain or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="gym" class="form-label">Gym ($)</label>
+            <input type="number" class="form-control expense-input" id="gym" name="gym" value="{{ budget.gym or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="insurance" class="form-label">Insurance ($)</label>
+            <input type="number" class="form-control expense-input" id="insurance" name="insurance" value="{{ budget.insurance or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="miscellaneous" class="form-label">Miscellaneous ($)</label>
+            <input type="number" class="form-control expense-input" id="miscellaneous" name="miscellaneous" value="{{ budget.miscellaneous or 0 }}" step="0.01" placeholder="0.00">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Budget</button>
+    </form>
+
+    {% if budget.remaining_budget is not none %}
+        <h3 class="mt-4">Summary</h3>
+        <p><strong>Total Income:</strong> {{ (budget.paycheck1 | default(0) + budget.paycheck2 | default(0)) | usd }}</p>
+        <p><strong>Total Expenses:</strong> {{ budget.total_expenses | usd }}</p>
+        <p><strong>Remaining Budget:</strong> {{ budget.remaining_budget | usd }}</p>
+    {% endif %}
+
+    {% if budget.remaining_budget > 0 %}
+        <h3 class="mt-4">Growth Opportunity</h3>
+        <p>Your remaining budget is {{ budget.remaining_budget | usd }}.</p>
+        <p>Would you like to either invest it in our savings account at 4.5% p.a, or invest in the US Stock Market?</p>
+        <form action="/savings_redirect" method="post" class="d-inline">
+            <button type="submit" name="response" value="savings" class="btn btn-success">Savings</button>
+        </form>
+        <form action="/savings_redirect" method="post" class="d-inline">
+            <button type="submit" name="response" value="stocks" class="btn btn-info">Stock Market</button>
+        </form>
+        <form action="/savings_redirect" method="post" class="d-inline">
+            <button type="submit" name="response" value="no" class="btn btn-danger">No, Thanks!</button>
+        </form>
+    {% endif %}
+
+{% endblock %}

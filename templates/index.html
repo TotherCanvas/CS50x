@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<!-- Most of the below classes were leanrt from GPT-4-->
+    <div class="container text-center py-5">
+        <h1 class="mb-4">Welcome to <span class="text-primary">FinScope</span></h1>
+        <p class="lead">Take control of your finances with ease and confidence.</p>
+
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Track Your Expenses</h5>
+                        <p class="card-text">Easily monitor where your money is going with detailed insights and reports.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Budget Like a Pro</h5>
+                        <p class="card-text">Set monthly budgets and achieve your financial goals with smart suggestions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Secure and Private</h5>
+                        <p class="card-text">Your data is safe with state-of-the-art encryption and strict privacy policies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <div class="row">
+            <div class="col-md-6">
+                <img src="/static/finances.jpg" alt="Finance Tracking" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6 d-flex flex-column justify-content-center">
+                <h2>Why Choose <span class="text-primary">FinScope</span>?</h2>
+                <ul class="list-unstyled mt-3 mx-auto" style="max-width: 400px;">
+                    <li class="mb-3 d-flex align-items-start">
+                        <i class="bi bi-check-circle-fill text-success me-3"></i>
+                        <div><strong>Simple and Intuitive Interface:</strong> Designed with you in mind.</div>
+                    </li>
+                    <li class="mb-3 d-flex align-items-start">
+                        <i class="bi bi-clock-fill text-primary me-3"></i>
+                        <div><strong>Real-Time Updates:</strong> See the latest data instantly.</div>
+                    </li>
+                    <li class="mb-3 d-flex align-items-start">
+                        <i class="bi bi-wallet-fill text-warning me-3"></i>
+                        <div><strong>Free to Use:</strong> Get started without any hidden fees.</div>
+                    </li>
+                    <li class="mb-3 d-flex align-items-start">
+                        <i class="bi bi-person-check-fill text-info me-3"></i>
+                        <div><strong>Expert Support:</strong> We’re here to help when you need us.</div>
+                    </li>
+                </ul>
+                <a href="/signup" class="btn btn-primary btn-lg mt-4">Get Started</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

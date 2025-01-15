@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- "https://www.flaticon.com/free-icons/dollars" Dollars icons created by fancykeith -->
+        <link href="/static/dollars.ico" rel="icon">
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <title>FinScope: {% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+        <!-- Navbar Header -->
+        <header class="d-flex align-items-center bg-light py-2 px-3 border-bottom">
+            <!-- Hamburger Button -->
+            <button class="btn btn-primary me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+                ☰
+            </button>
+            <!-- Logo and Name -->
+            <div class="d-flex align-items-center">
+                <img src="/static/logo.png" alt="FinScope Logo" class="me-2" style="height: 30px;">
+                <a href="/" class="text-decoration-none">
+                    <span class="fs-4 text-primary">FinScope</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Off-Canvas Menu -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                {% if session["user_id"] %}
+                    <ul class="list-group">
+
+                        <li class="list-group-item"><a href="/budget" class="text-decoration-none">Budget</a></li>
+                        <li class="list-group-item"><a href="/savings" class="text-decoration-none">Savings</a></li>
+                        <li class="list-group-item"><a href="/stocks" class="text-decoration-none">Stocks</a></li>
+                        <li class="list-group-item"><a href="/insights" class="text-decoration-none">Insights</a></li>
+                        <li class="list-group-item"><a href="/signout" class="text-decoration-none text-danger">Sign Out</a></li>
+                        <li class="list-group-item"><a href="/aboutus" class="text-decoration-none">About Us</a></li>
+                        <li class="list-group-item"><a href="/careers" class="text-decoration-none">Careers</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="/signup" class="text-decoration-none">Sign Up</a></li>
+                        <li class="list-group-item"><a href="/signin" class="text-decoration-none">Sign In</a></li>
+                        <li class="list-group-item"><a href="/aboutus" class="text-decoration-none">About Us</a></li>
+                        <li class="list-group-item"><a href="/careers" class="text-decoration-none">Careers</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Flash Messages -->
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary mb-0 text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <!-- Main Content -->
+        <main class="container py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-5">
+            <p>&copy; {{ year }} FinScope. All rights reserved. For job inquiries, please contact us at <strong>careers@finscope.com</strong>.</p>
+            <b>Developed by</b>
+            <a href="https://www.linkedin.com/in/sandivd/" target="_blank" class="link-primary dev_atag"> Sandiv Dathunarachchi</a>
+        </footer>
+
+    </body>
+
+</html>
