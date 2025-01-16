@@ -39,6 +39,3 @@ The key features of this app includes:
 ##### Design Choices
 - Backend with Flask: I chose Flask for its simplicity and lightweight nature, which is perfect for a project of this scale. Its flexibility helps with seamless integration of user authentication, database management and dynamic routing.
 - User Interface: The UI was designed with a focus on modern design principles while keeping it simple enough for users to navigate effortlessly. Bootstrap classses were also used to enhance aesthetics,
-##### Challenges Faced and Solutions
-- Deciding on what project to make was probably a challenge lol. Out of all the psets, the finance one was my favorite since I find the stock market pretty interesting, which is why I decided to do a project related to finance.
-- At first, I struggled with customizing the appearance of the site using Bootstrap since it's not something I'm familiar with. Using ChatGPT, I learned how to use their classes effectively to create a visually appealing and functional design.
